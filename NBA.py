@@ -43,7 +43,7 @@ def get_player(url):
 
 
 def get_stats():
-    player_names, player_urls = get_player()
+    player_names, player_urls = get_player(BASE_URL)
     master_list = []
     for url in player_urls:
         response = requests.get(f"https://www.basketball-reference.com/{url}")
@@ -110,6 +110,7 @@ def create_excel():
     )
 
 
+print('Collecting Data...')
 get_player(BASE_URL)
 get_stats()
 create_excel()
