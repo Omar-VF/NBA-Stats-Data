@@ -7,7 +7,7 @@ import re
 import pandas
 import time
 
-start_time=time.time()
+start_time = time.time()
 
 BASE_URL = "https://www.basketball-reference.com/players/"
 
@@ -90,7 +90,7 @@ def get_stats():
         else:
             print(f"Failed to fetch data from {url}")
 
-        delay = 1.75
+        delay = 1.3
         time.sleep(delay)
 
     return master_list
@@ -107,12 +107,14 @@ def create_excel():
         print(f"Failed to save Csv : {e}")
 
     count = len(master_list)
+    timer = round(time.time()-start_time,2)
+    timer = time.strftime("%M:%S", time.gmtime(timer))
     print(
-        f"The process has been completed.\nData of {count} players collected\nTime Taken :{round(time.time()-start_time,2)}"
+        f"The process has been completed.\nData of {count} players collected\nTime Taken :{timer}"
     )
 
 
-print('Collecting Data...')
+print("Collecting Data...")
 get_player(BASE_URL)
 get_stats()
 create_excel()
